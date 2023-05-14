@@ -4,6 +4,7 @@ import { auth } from "@/firebase/firebase"
 import { onAuthStateChanged } from "firebase/auth";
 import {onMounted, ref} from "vue"
 import { useRouter } from "vue-router";
+import input_box from "./input_box.vue"
 
 const router = useRouter()
 
@@ -27,53 +28,56 @@ onMounted(() => {
 </script>
 
 <template>
-    <header>
+    <div class="header_wrapper">
+        <header>
         <h1 class="logo">
             <RouterLink to="/">Grouping App</RouterLink>
         </h1>
-        <ul class="items">
-            <li class="item">
-                <RouterLink to="/">Home</RouterLink>
-            </li>
-            <li class="item">Coming soon...</li>
-            <li>
-                <input class="item search" type="search" name="search" placeholder="キーワードを入力">
-            </li>
-            <li class="item" v-if="!login">
-                <RouterLink to="/login">ログイン</RouterLink>
-            </li>
-            <li class="item" v-if="!login">
-                <RouterLink to="/register">登録</RouterLink>
-            </li>
-            <li class="item" v-if="login">
-                <RouterLink to="mypage">マイページ</RouterLink>
-            </li>
-            <li class="item" v-if="login">
-                <a class="logout" @click="logout()">ログアウト</a>
-            </li>
-        </ul>
-    </header>
+            <ul class="items">
+                <li class="item">
+                    <RouterLink to="/">Home</RouterLink>
+                </li>
+                <li class="item">Coming soon...</li>
+                <li>
+                    <input_box class="item" placeholder="部屋を検索" type="hidden"/>
+                </li>
+                <li class="item" v-if="!login">
+                    <RouterLink to="/login">LogIn</RouterLink>
+                </li>
+                <li class="item" v-if="!login">
+                    <RouterLink to="/register">Register</RouterLink>
+                </li>
+                <li class="item" v-if="login">
+                    <RouterLink to="/mypage">MyPage</RouterLink>
+                </li>
+                <li class="item" v-if="login">
+                    <a class="logout" @click="logout()">Logout</a>
+                </li>
+            </ul>
+        </header>
+    </div>
 </template>
 
-<style scoped>
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1;
-    max-width: 1280px;
-    margin: 0 auto;
+<style scoped lang="scss">
+.header_wrapper{
+    width: 100%;
+    box-shadow: 0 1px 3px #0000001a;
+    padding-bottom: 10px;
+    header {
+        max-width: 1280px;
+        margin: 0 auto;
+    }
 }
 
 .logo {
     display: flex;
+    font-size: 2.5rem;
 }
 
 .items {
     display: flex;
     padding-left: 0;
-    font-size: 20px;
+    font-size: 1.5rem;
     width: 100%;
     margin-top: 5px;
 }
@@ -92,7 +96,7 @@ li {
 
 .item {
     padding: 15px;
-    font-size: 20px;
+    font-size: 1.5rem;
 }
 
 .search {
