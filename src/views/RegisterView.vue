@@ -78,7 +78,7 @@ const registerUser = () => {
             <myButton type="submit" class="btn btn-info">登録</myButton>
         </form>
         <p class="or">OR</p>
-        <RouterLink class="login" to="/">ログイン</RouterLink>
+        <RouterLink class="login" to="/login">ログイン</RouterLink>
     </div>
 </template>
 
