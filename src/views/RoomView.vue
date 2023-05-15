@@ -153,6 +153,12 @@ const sub = () => {
   group_num.value--;
 };
 
+watch(group_num, ()=>{
+  if(group_num.value <= 0){
+    group_num.value == 1
+  }
+})
+
 watch(room_members_uid, () => {
   getUserInfos(room_members_uid.value);
 });
